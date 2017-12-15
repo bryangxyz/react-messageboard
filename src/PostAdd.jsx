@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class PostAdd extends React.Component {
   constructor(props) {
@@ -28,6 +29,8 @@ class PostAdd extends React.Component {
       <div>
         <textarea value={this.state.newPost} onChange={this.handlePostInputChange} />
         <button onClick={this.createPost}>Add</button>
+        {' '}
+        <Link to='/posts'>Back</Link>
       </div>
     );
   }
