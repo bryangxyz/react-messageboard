@@ -22,7 +22,7 @@ class App extends Component {
       posts: currentPosts,
     });
   }
-  
+
   render() {
     return (
       <div>
@@ -30,13 +30,13 @@ class App extends Component {
           <Route
             exact path='/posts'
             render={() => (
-              <PostList />
+              <PostList posts={this.state.posts}/>
             )}
           />
           <Route
             path='/addpost'
             render={() => (
-              <PostAdd />
+              <PostAdd addPost={this.addPost}/>
             )}
           />
           <Route
