@@ -1,0 +1,43 @@
+.card {
+  margin: 1em 10%;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.btn {
+  float: right;
+}
+
+form .cancel {
+  float: left;
+}
+
+.post-by {
+  padding-right: 4em;
+}
+
+.post-summary {
+  float: left;
+}
+
+.post-time {
+  float: right;
+}
+
+.post-by-user {
+  margin-right: 4em;
+}
+
+.post-detail {
+  text-align: left;
+}
+
+.back-btn {
+  float: right;
+}

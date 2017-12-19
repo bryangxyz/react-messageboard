@@ -6,13 +6,15 @@ class PostAdd extends React.Component {
     super(props);
     this.state = {
       title: '',
-      content: '',
+      message: '',
+      user: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.createPost = this.createPost.bind(this);
   }
 
   handleChange(e) {
+    e.preventDefault();
     let fieldName = e.target.name;
     this.setState({
       [fieldName]: e.target.value,
@@ -20,22 +22,24 @@ class PostAdd extends React.Component {
   }
 
   createPost() {
-    let a = Date.now();
-    a = new Date(a)
-    let b = a.toLocaleTimeString();
-    a = a.toLocaleDateString();
+    let date = Date.now();
+    date = new Date(date);
+    let time = date.toLocaleTimeString();
+    date = date.toLocaleDateString();
 
-    if (this.state.title && this.state.content) {
+    if (this.state.title && this.state.message && this.state.user) {
       this.props.addPost({
         title: this.state.title,
-        content: this.state.content,
+        message: this.state.message,
+        user: this.state.user,
         replies: [],
-        date: a,
-        time: b,
+        date,
+        time,
       });
       this.setState({
         title: '',
-        content: '',
+        message: '',
+        user: '',
       });
       this.props.history.push('/posts');
     }
@@ -43,12 +47,26 @@ class PostAdd extends React.Component {
 
   render() {
     return (
-      <div>
-        <textarea name="title" value={this.state.title} onChange={this.handleChange} />
-        <textarea name="content" value={this.state.content} onChange={this.handleChange} />
-        <button onClick={this.createPost}>Add</button>
-        {' '}
-        <Link to='/posts'>Back</Link>
+      <div className="card">
+        <div className="card-body">
+          <h4 className="card-title">Create a new post</h4>
+          <form>
+            <div className="form-group">
+              <label htmlFor="title">Title</label>
+              <input name="title" value={this.state.title} onChange={this.handleChange} type="text" className="form-control" id="title" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <input name="message" value={this.state.message} onChange={this.handleChange} type="textarea" className="form-control" id="message" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="user">User</label>
+              <input name="user" value={this.state.user} onChange={this.handleChange} type="text" className="form-control" id="user" />
+            </div>
+            <Link className="cancel btn btn-primary"  to='/posts'>Cancel</Link>
+            <button type="submit" className="btn btn-primary" onClick={this.createPost}>Create Post</button>
+          </form>
+        </div>
       </div>
     );
   }

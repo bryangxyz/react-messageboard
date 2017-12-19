@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class PostEntry extends React.Component {
   constructor(props) {
@@ -17,9 +17,19 @@ class PostEntry extends React.Component {
 
   render() {
     return (
-      <div>
-        <p onClick={this.route}>{this.props.postBody.title}</p>
-        <div>{this.props.postBody.replies.length} Comments</div>
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title" onClick={this.route}>Post Title {this.props.postBody.title}</h5>
+          <div className="card-text">
+            <span className="post-summary">
+              <span className="post-by">Posted by: {this.props.postBody.user}</span>
+              <a onClick={this.route}>{this.props.postBody.replies.length} Comments</a>
+            </span>
+            <span className="post-time">
+              Last Update: {this.props.postBody.date} @ {this.props.postBody.time}
+            </span>
+          </div>
+        </div>
       </div>
     );
   }
